@@ -29,7 +29,7 @@ async function fetchIssues(state) {
 
 function generateMarkdownTable(issues) {
     let markdownTable = `
-| # | Issue | State |
+| ${issue.state === "open" ? "< />" : "✅"} | Issue | State |
 |---|-------|-------|`;
 
     issues.forEach((issue, index) => {
@@ -46,11 +46,11 @@ async function updateReadme() {
         const closedIssues = await fetchIssues('closed');
 
         const readmeContent = `
-    ### Open Issues
-    ${generateMarkdownTable(openIssues)}
+### Open Issues
+${generateMarkdownTable(openIssues)}
 
-    ### Closed Issues
-    ${generateMarkdownTable(closedIssues)}
+### Closed Issues
+${generateMarkdownTable(closedIssues)}
     `;
         fs.writeFileSync("README.md", readmeContent);
     } catch (error) {
