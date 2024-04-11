@@ -46,12 +46,14 @@ async function updateReadme() {
         const closedIssues = await fetchIssues('closed');
 
         const readmeContent = `
-### Open Issues
-${generateMarkdownTable(openIssues)}
+            <h3 align="center">💪 Power Of CI/CD - GitHub Actions 🎬</h3>
+            <h4 align="center">📃 List of Issues of this Repo 🫢</h4>
+            ### Open Issues
+            ${generateMarkdownTable(openIssues)}
 
-### Closed Issues
-${generateMarkdownTable(closedIssues)}
-`;
+            ### Closed Issues
+            ${generateMarkdownTable(closedIssues)}
+        `;
         fs.writeFileSync("README.md", readmeContent);
     } catch (error) {
         console.error('Error updating README:', error);
