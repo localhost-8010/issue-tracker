@@ -51,7 +51,8 @@ ${generateMarkdownTable(openIssues)}
 
 ### Closed Issues
 ${generateMarkdownTable(closedIssues)}
-    `;
+`;
+
         fs.writeFileSync("README.md", readmeContent);
     } catch (error) {
         console.error('Error updating README:', error);

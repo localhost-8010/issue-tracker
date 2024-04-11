@@ -23,9 +23,9 @@ jobs:
     - name: Update README
       run: node index.js
       env:
-        OWNER: owner # Replace with your GitHub username
-        REPO: repo # Replace with your repository name
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # Store your access token as a secret
+        OWNER: owner
+        REPO: repo
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} 
 
     - name: Commit and push changes
       run: |
