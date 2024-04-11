@@ -34,7 +34,7 @@ function generateMarkdownTable(issues) {
 
     issues.forEach((issue, index) => {
         markdownTable += `
-| ${index + 1} | [${issue.title}](${issue.html_url}) | ${issue.state} |`;
+| ${index + 1} | [${issue.title}](${issue.html_url}) | ${issue.state} ${issue.state === "open" ? "🔓" : "🔒"} |`;
     });
 
     return markdownTable;
