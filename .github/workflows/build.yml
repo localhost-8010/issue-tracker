@@ -16,7 +16,7 @@ jobs:
 
       - name: Generate access token
         id: generate-token
-        uses: {% raw %}actions/github-script@v6{% endraw %}
+        uses: actions/github-script@v6
         with:
           github-script: |
             core.setOutput('token', process.env.ACCESS_TOKEN);
