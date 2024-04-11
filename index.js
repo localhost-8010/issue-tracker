@@ -29,7 +29,7 @@ async function fetchIssues(state) {
 
 function generateMarkdownTable(issues) {
     let markdownTable = `
-| ${issue.state === "open" ? "< />" : "✅"} | Issue | State |
+| # | Issue | State |
 |---|-------|-------|`;
 
     issues.forEach((issue, index) => {
