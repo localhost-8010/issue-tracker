@@ -1,4 +1,4 @@
-name: Update README with Open/Closed Issues
+name: Update Issues Table
 
 on:
   issues:
@@ -9,25 +9,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
 
-      - name: Install Dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm install
 
-      - name: Run Script to Update README
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: node index.js
+    - name: Update README
+      run: node script.js
+      env:
+        OWNER: owner # Replace with your GitHub username
+        REPO: repo # Replace with your repository name
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # Store your access token as a secret
 
-      - name: Commit Changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "Update README with Open/Closed Issues"
-          branch: ${{ github.ref }}
-          commit_options: "--no-verify"
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add README.md
+        git commit -m "Update README with latest issues [skip ci]"
+        git push
