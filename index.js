@@ -45,9 +45,9 @@ async function updateReadme() {
         const openIssues = await fetchIssues('open');
         const closedIssues = await fetchIssues('closed');
 
-        const readmeContent = `
-            <h3 align="center">💪 Power Of CI/CD - GitHub Actions 🎬</h3>
-            <h4 align="center">📃 List of Issues of this Repo 🫢</h4>
+        const readmeContent = ```<h3 align="center">💪 Power Of CI/CD - GitHub Actions 🎬</h3>
+        <h4 align="center">📃 List of Issues of this Repo 🫢</h4>```+`
+            
             ### Open Issues
             ${generateMarkdownTable(openIssues)}
 
