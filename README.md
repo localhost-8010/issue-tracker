@@ -3,6 +3,7 @@
 
 | # | Issue | State |
 |---|-------|-------|
+| 1 | [this issue will show up in README.md](https://github.com/localhost-8010/issue-tracker/issues/9) | open |
 
 ### Closed Issues
 
