@@ -1,4 +1,4 @@
-name: Update README with Issues
+name: Update README with Open/Closed Issues
 
 on:
   issues:
@@ -9,29 +9,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: npm install @octokit/rest
-
-      - name: Generate access token
-        id: generate-token
-        uses: actions/github-script@v6
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          github-script: |
-            core.setOutput('token', process.env.ACCESS_TOKEN);
-          env:
-            ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} 
+          node-version: '14'
 
-      - name: Update README
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Script to Update README
         env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} 
-        run: node update-readme.js
-      - name: Commit changes
-        run: git config --global user.email "github-actions[bot]@users.noreply.github.com" && git config --global user.name "GitHub Actions" && git add README.md && git commit -m "Update README with issues"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node index.js
 
-      - name: Push changes
-        uses: actions/checkout@v3
+      - name: Commit Changes
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          fetch-depth: 0
-        run: git push origin main
+          commit_message: "Update README with Open/Closed Issues"
+          branch: ${{ github.ref }}
+          commit_options: "--no-verify"
