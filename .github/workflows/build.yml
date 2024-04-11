@@ -1,4 +1,4 @@
-name: Update Issues Table
+name: Update README with Open/Closed Issues
 
 on:
   issues:
@@ -9,20 +9,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install Dependencies
+        run: npm install
 
-    - name: Update README
-      run: node index.js
-      env:
-        OWNER: localhost-8010
-        REPO: issue-tracker
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} 
+      - name: Run Script to Update README
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} 
+        run: node index.js
+
+      - name: Commit Changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Update README with Open/Closed Issues"
+          branch: ${{ github.ref }}
+          commit_options: "--no-verify"
