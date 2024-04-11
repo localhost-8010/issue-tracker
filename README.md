@@ -3,6 +3,7 @@
     
 | # | Issue | State |
 |---|-------|-------|
+| 1 | [qwert](https://github.com/localhost-8010/issue-tracker/issues/5) | open 🔓 |
 
     ### Closed Issues
     
